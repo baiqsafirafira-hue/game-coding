@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gameCoding - Ahli Logika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">gameCoding</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showSection('hero')">Beranda</a></li>
+            <li><a href="#" onclick="showSection('game-selection')">Permainan</a></li>
+            <li><a href="#" onclick="alert('Dikembangkan oleh Antigravity')">Tentang</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero section">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="gameCoding">gameCoding</h1>
+            <p class="subtitle">Tingkatkan Logika Pemrogramanmu</p>
+            <button id="start-btn" class="cyber-btn"
+                onclick="showSection('game-selection')">MULAI_PETUALANGAN()</button>
+        </div>
+        <div class="hero-bg"></div>
+    </header>
+
+    <!-- Game Selection Section -->
+    <section id="game-selection" class="section hidden">
+        <div class="container center-col">
+            <h2 class="section-title">PILIH_MISI</h2>
+
+            <div class="mascot-container">
+                <img src="assets/mascot.png" alt="Anime Mascot" class="mascot-img">
+                <div class="speech-bubble">
+                    <p>Halo Coder! Siap menguji logika kamu? Pilih tantanganmu sekarang!</p>
+                </div>
+            </div>
+
+            <div class="game-grid">
+                <div class="game-card" onclick="selectGame('quiz')">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h3>Kuis Logika</h3>
+                    <p>Jawab pertanyaan dasar pemrograman.</p>
+                </div>
+                <div class="game-card" onclick="selectGame('logo')">
+                    <div class="icon"><i class="fas fa-shapes"></i></div>
+                    <h3>Tebak Logo</h3>
+                    <p>Kenali teknologi dari logonya.</p>
+                </div>
+                <div class="game-card" onclick="selectGame('syntax')">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>Tulis Kode</h3>
+                    <p>Ketik sintaks yang benar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Language Selection Modal -->
+    <div id="language-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>PILIH BAHASA</h2>
+            <div class="language-options">
+                <button class="lang-btn html" onclick="selectLanguage('html')"><i class="fab fa-html5"></i>
+                    HTML</button>
+                <button class="lang-btn css" onclick="selectLanguage('css')"><i class="fab fa-css3-alt"></i>
+                    CSS</button>
+                <button class="lang-btn js" onclick="selectLanguage('js')"><i class="fab fa-js"></i> JS</button>
+                <button class="lang-btn python" onclick="selectLanguage('python')"><i class="fab fa-python"></i>
+                    Python</button>
+                <button class="lang-btn java" onclick="selectLanguage('java')"><i class="fab fa-java"></i> Java</button>
+                <button class="lang-btn random" onclick="selectLanguage('random')"><i class="fas fa-random"></i>
+                    Acak</button>
+            </div>
+            <button class="close-btn" onclick="closeModal()">BATAL</button>
+        </div>
+    </div>
+
+    <!-- Difficulty Selection Modal -->
+    <div id="difficulty-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>PILIH TINGKAT KESULITAN</h2>
+            <div class="difficulty-options">
+                <button class="difficulty-btn normal" onclick="startGameWithDifficulty('normal')">NORMAL</button>
+                <button class="difficulty-btn medium" onclick="startGameWithDifficulty('medium')">SEDANG</button>
+                <button class="difficulty-btn hard" onclick="startGameWithDifficulty('hard')">SULIT</button>
+            </div>
+            <button class="close-btn" onclick="closeModal()">BATAL</button>
+        </div>
+    </div>
+
+    <!-- Gameplay Section -->
+    <main id="gameplay" class="section hidden">
+        <div class="game-ui">
+            <div class="hud">
+                <div class="hud-item">SKOR: <span id="score">0</span></div>
+                <div class="hud-item">NYAWA: <span id="lives">5</span></div>
+                <div class="hud-item">LEVEL: <span id="difficulty-display">NORMAL</span></div>
+                <button class="exit-btn" onclick="showSection('game-selection')">KELUAR</button>
+            </div>
+
+            <div id="game-content-area">
+                <!-- Content injected by JS -->
+            </div>
+
+            <div id="feedback" class="feedback hidden"></div>
+        </div>
+    </main>
+
+    <!-- Game Over Section -->
+    <div id="game-over" class="hidden">
+        <div class="result-box">
+            <h2>SISTEM_TERHENTI</h2>
+            <p>Skor Akhir: <span id="final-score">0</span></p>
+            <button id="restart-btn" class="cyber-btn" onclick="showSection('game-selection')">MENU_UTAMA()</button>
+        </div>
+    </div>
+
+
+    <div id="reward-modal" class="modal hidden">
+        <div class="modal-content reward-content">
+            <div class="trophy-anim">🏆</div>
+            <h2>SELAMAT!</h2>
+            <p>Kamu telah menyelesaikan misi.</p>
+            <div class="final-stats">
+                <p>Skor: <span id="reward-score">0</span></p>
+                <p>Status: <span id="reward-rank">Novice</span></p>
+                <!-- Container for specific Reward/Punishment text -->
+                <p id="reward-message" class="text-lg mt-4 font-bold" style="color: #ffd700;"></p>
+            </div>
+            <button class="cyber-btn" onclick="showSection('game-selection')">MAIN LAGI</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
