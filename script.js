@@ -61,12 +61,8 @@ function speak(text, pitch = 1.0, rate = 1.0) {
     }
 }
 
-// Welcome Message - Firm Voice
-document.body.addEventListener('click', function initWelcome() {
-    // Pitch 0.9 for deeper/firmer tone
-    speak("Selamat datang di gamecoding, disini logikamu diuji", 0.9, 1.0);
-    document.body.removeEventListener('click', initWelcome);
-}, { once: true });
+// Welcome Message removed as requested
+// document.body.addEventListener('click', function initWelcome() { ... });
 
 // Navigation
 function showSection(id) {
